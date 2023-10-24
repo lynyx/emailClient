@@ -1,0 +1,39 @@
+<div class="field">
+  <label>{{ label }}</label>
+
+  <input *ngIf="controlType === 'input'" [type]="inputType" [formControl]="control" data-lpignore="true" />
+
+  <textarea *ngIf="controlType === 'textarea'" [formControl]="control"></textarea>
+
+ <div *ngIf="showErrors()" class="ui pointing red basic label">
+   <p *ngIf="control.errors?.['required']">
+     This field is required
+   </p>
+
+   <p *ngIf="control.errors?.['email']">
+     Enter valid email
+   </p>
+
+   <p *ngIf="control.errors?.['minlength']">
+     This field must be at least {{ control.errors?.['minlength'].requiredLength }} characters but provided {{ control.errors?.['minlength'].actualLength }}
+   </p>
+
+   <p *ngIf="control.errors?.['maxlength']">
+     This field must be less than {{ control.errors?.['maxlength'].requiredLength }} characters but provided {{ control.errors?.['maxlength'].actualLength }}
+   </p>
+
+   <p *ngIf="control.errors?.['pattern']">
+     This field has invalid format
+   </p>
+
+   <p *ngIf="control.errors?.['nonUniqueUsername']">
+     This username is already busy
+   </p>
+
+   <p *ngIf="control.errors?.['noConnection']">
+     There is no internet connection
+   </p>
+ </div>
+</div>
+
+
